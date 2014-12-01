@@ -14,8 +14,11 @@ class varnish::params {
       $service_name = 'varnish'
     }
     'FreeBSD': {
-      $package_name = 'www/varnish'
-      $service_name = 'varnishd'
+      $package_name    = 'www/varnish'
+      $service_name    = 'varnishd'
+      $prefix          = '/usr/local'
+      $config          = "$prefix/etc/varnish/default.vcl"
+      $config_template = 'varnish/default.vcl.erb'
     }
     default: {
       fail("${::operatingsystem} not supported")
