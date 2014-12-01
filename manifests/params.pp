@@ -5,13 +5,12 @@
 #
 class varnish::params {
   case $::osfamily {
-    'Debian': {
-      $package_name = 'varnish'
-      $service_name = 'varnish'
-    }
-    'RedHat', 'Amazon': {
-      $package_name = 'varnish'
-      $service_name = 'varnish'
+    'Debian', 'RedHat', 'Amazon': {
+      $package_name    = 'varnish'
+      $service_name    = 'varnish'
+      $prefix          = ''
+      $config          = '/etc/varnish/default.vcl'
+      $config_template = 'varnish/default.vcl.erb'
     }
     'FreeBSD': {
       $package_name    = 'www/varnish'
@@ -22,6 +21,13 @@ class varnish::params {
     }
     default: {
       fail("${::operatingsystem} not supported")
+    }
+  }
+
+  $backend = {
+    'default' => {
+      host => '127.0.0.1',
+      port => '8080',
     }
   }
 }
