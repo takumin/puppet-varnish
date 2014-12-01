@@ -15,7 +15,7 @@ class varnish::params {
     }
     'FreeBSD': {
       $package_name = 'www/varnish'
-      $service_name = 'varnish'
+      $service_name = 'varnishd'
     }
     default: {
       fail("${::operatingsystem} not supported")
