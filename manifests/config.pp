@@ -14,10 +14,10 @@ class varnish::config {
   }
 
   if $operatingsystem == 'freebsd' {
-    exec { 'using config file'
+    exec { 'using config file':
       path    => [ '/usr/local/sbin', '/usr/sbin', '/usr/bin', '/bin' ],
-      command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_config=\"$::varnish::varnishd_config\"",
-      onlyif  => 'test `sysrc -n -f /etc/rc.conf.d/varnishd varnishd_config` == NO'
+      command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_config=$::varnish::config",
+      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_config"
     }
   }
 
