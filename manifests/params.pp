@@ -24,6 +24,10 @@ class varnish::params {
     }
   }
 
+  $storage = {
+    type => 'malloc',
+    size => '25%',
+  }
   $backend = {
     'default' => {
       host => '127.0.0.1',

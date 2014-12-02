@@ -19,6 +19,11 @@ class varnish::config {
       command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_config=$::varnish::config",
       unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_config"
     }
+    exec { 'storage configuration':
+      path    => [ '/usr/local/sbin', '/usr/sbin', '/usr/bin', '/bin' ],
+      command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_storage=$::varnish::storage[type],$::varnish::storage[size]",
+      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_storage"
+    }
   }
 
 }

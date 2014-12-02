@@ -13,6 +13,7 @@ class varnish (
   $prefix          = $::varnish::params::prefix,
   $config          = $::varnish::params::config,
   $config_template = $::varnish::params::config_template,
+  $storage         = $::varnish::params::storage,
   $backend         = $::varnish::params::backend,
 ) inherits ::varnish::params {
 
