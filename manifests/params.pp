@@ -25,8 +25,9 @@ class varnish::params {
   }
 
   $storage = {
-    type => 'malloc',
-    size => '25%',
+    type => 'file',
+    path => '/tmp',
+    size => '50%',
   }
   $backend = {
     'default' => {
