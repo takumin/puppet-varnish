@@ -17,12 +17,12 @@ class varnish::config {
     exec { 'using config file':
       path    => [ '/usr/local/sbin', '/usr/sbin', '/usr/bin', '/bin' ],
       command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_config=$::varnish::config",
-      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_config"
+      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_config | grep $::varnish::config"
     }
     exec { 'storage configuration':
       path    => [ '/usr/local/sbin', '/usr/sbin', '/usr/bin', '/bin' ],
       command => "sysrc -f /etc/rc.conf.d/varnishd varnishd_storage=$::varnish::storage_config",
-      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_storage"
+      unless  => "sysrc -n -f /etc/rc.conf.d/varnishd varnishd_storage | grep $::varnish::storage_config"
     }
   }
 
